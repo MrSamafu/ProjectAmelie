@@ -22,6 +22,18 @@ public class CreateHouse : MonoBehaviour
     {
         if(build == false)
         {
+            if(buildings[SystemManager.selection].name == "HousePrototype")
+            {
+
+            }
+            if (buildings[SystemManager.selection].name == "LaboPrototype")
+            {
+
+            }
+            if (buildings[SystemManager.selection].name == "DockPrototype")
+            {
+
+            }
             Instantiate(buildings[SystemManager.selection], buildingPosition, Quaternion.identity);
             build = true;
             render.material.color = Color.green;
