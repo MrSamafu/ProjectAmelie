@@ -15,17 +15,17 @@ public class Reward : MonoBehaviour
         nameBuilding = gameObject.name;
         earnReward = false;
         coinEarned = true;
-        coins = transform.GetChild(0).gameObject;
-        coins.SetActive(false);
+        if (nameBuilding != "HousePrototype(Clone)")
+        {
+            coins = transform.GetChild(0).gameObject;
+            coins.SetActive(false);
+        } 
+        
     }
     private void Update()
     {
         if(earnReward == false)
         {
-            if (nameBuilding == "HousePrototype(Clone)")
-            {
-                StartCoroutine(House());
-            }
             if (nameBuilding == "LaboPrototype(Clone)")
             {
                 StartCoroutine(Labo());
@@ -34,16 +34,16 @@ public class Reward : MonoBehaviour
             {
                 StartCoroutine(Dock());
             }
+            if (nameBuilding == "FarmPrototype(Clone)")
+            {
+                StartCoroutine(Farm());
+            }
+            if (nameBuilding == "MarketPrototype(Clone)")
+            {
+                StartCoroutine(Market());
+            }
         }
         
-
-    }
-    IEnumerator House()
-    {
-        earnReward = true;
-        yield return new WaitForSeconds(5f);
-        coins.SetActive(true);
-        coinEarned = false;
 
     }
     IEnumerator Labo()
@@ -60,14 +60,26 @@ public class Reward : MonoBehaviour
         coins.SetActive(true);
         coinEarned = false;
     }
+    IEnumerator Farm()
+    {
+        earnReward = true;
+        yield return new WaitForSeconds(5f);
+        coins.SetActive(true);
+        coinEarned = false;
+
+    }
+    IEnumerator Market()
+    {
+        earnReward = true;
+        yield return new WaitForSeconds(5f);
+        coins.SetActive(true);
+        coinEarned = false;
+
+    }
     private void OnMouseDown()
     {
         if(coinEarned == false)
         {
-            if (nameBuilding == "HousePrototype(Clone)")
-            {
-                SystemManager.cash = SystemManager.cash + 15;
-            }
             if (nameBuilding == "LaboPrototype(Clone)")
             {
                 SystemManager.researchPoint = SystemManager.researchPoint + 15;     
@@ -75,6 +87,14 @@ public class Reward : MonoBehaviour
             if (nameBuilding == "DockPrototype(Clone)")
             {
                 SystemManager.materials = SystemManager.materials + 15;  
+            }
+            if (nameBuilding == "FarmPrototype(Clone)")
+            {
+                SystemManager.food = SystemManager.food + 15;
+            }
+            if (nameBuilding == "MarketPrototype(Clone)")
+            {
+                SystemManager.cash = SystemManager.cash + 15;
             }
             coins.SetActive(false);
             earnReward = false;

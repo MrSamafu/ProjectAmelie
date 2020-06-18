@@ -24,19 +24,78 @@ public class CreateHouse : MonoBehaviour
         {
             if(buildings[SystemManager.selection].name == "HousePrototype")
             {
+                if(SystemManager.materials < 15 || SystemManager.cash < 15)
+                {
+                    Debug.Log("Il vous manque des ressources pour " + buildings[SystemManager.selection].name);
+                }
+                else
+                {
+                    SystemManager.materials = SystemManager.materials - 15;
+                    SystemManager.cash = SystemManager.cash - 15;
+                    SystemManager.staff = SystemManager.staff + 5;
+                    SystemManager.maxStaff = SystemManager.maxStaff + 5;
+                    Instantiate(buildings[SystemManager.selection], buildingPosition, Quaternion.identity);
+                }
 
             }
             if (buildings[SystemManager.selection].name == "LaboPrototype")
             {
-
+                if (SystemManager.researchPoint < 15 || SystemManager.cash < 15)
+                {
+                    Debug.Log("Il vous manque des ressources pour " + buildings[SystemManager.selection].name);
+                }
+                else
+                {
+                    SystemManager.materials = SystemManager.researchPoint - 15;
+                    SystemManager.cash = SystemManager.cash - 15;
+                    SystemManager.staff = SystemManager.staff - 1;
+                    Instantiate(buildings[SystemManager.selection], buildingPosition, Quaternion.identity);
+                }
             }
             if (buildings[SystemManager.selection].name == "DockPrototype")
             {
-
+                if (SystemManager.cash < 15)
+                {
+                    Debug.Log("Il vous manque des ressources pour " + buildings[SystemManager.selection].name);
+                }
+                else
+                {
+                    SystemManager.cash = SystemManager.cash - 15;
+                    SystemManager.staff = SystemManager.staff - 1;
+                    Instantiate(buildings[SystemManager.selection], buildingPosition, Quaternion.identity);
+                }
             }
-            Instantiate(buildings[SystemManager.selection], buildingPosition, Quaternion.identity);
+            if (buildings[SystemManager.selection].name == "FarmPrototype")
+            {
+                if (SystemManager.materials < 15)
+                {
+                    Debug.Log("Il vous manque des ressources pour " + buildings[SystemManager.selection].name);
+                }
+                else
+                {
+                    SystemManager.cash = SystemManager.materials - 15;
+                    SystemManager.staff = SystemManager.staff - 1;
+                    Instantiate(buildings[SystemManager.selection], buildingPosition, Quaternion.identity);
+                }
+            }
+            if (buildings[SystemManager.selection].name == "MarketPrototype")
+            {
+                if (SystemManager.cash < 15 || SystemManager.materials < 15 || SystemManager.food < 15)
+                {
+                    Debug.Log("Il vous manque des ressources pour " + buildings[SystemManager.selection].name);
+                }
+                else
+                {
+                    SystemManager.cash = SystemManager.cash - 15;
+                    SystemManager.cash = SystemManager.materials - 15;
+                    SystemManager.cash = SystemManager.food - 15;
+                    SystemManager.staff = SystemManager.staff - 1;
+                    Instantiate(buildings[SystemManager.selection], buildingPosition, Quaternion.identity);
+                }
+            }
+
             build = true;
-            render.material.color = Color.green;
+            
         }
     }
     private void OnMouseOver()

@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class SystemManager : MonoBehaviour
 {
     public static int selection;
-    public static int researchPoint, cash, materials, food;
+    public static int researchPoint, cash, materials, food, staff, maxStaff;
 
     private void Start()
     {
         selection = 0;
-        researchPoint = 0;
-        cash = 0;
-        materials = 0;
-        food = 0;
+        researchPoint = 100;
+        cash = 100;
+        materials = 100;
+        food = 100;
+        staff = 5;
+        maxStaff = 5;
     }
     private void Update()
     {
@@ -22,6 +24,8 @@ public class SystemManager : MonoBehaviour
         GameObject.Find("Food").GetComponentInChildren<Text>().text = "" + food;
         GameObject.Find("Materials").GetComponentInChildren<Text>().text = "" + materials;
         GameObject.Find("ResearchPoint").GetComponentInChildren<Text>().text = "" + researchPoint;
+        GameObject.Find("Staff").GetComponentInChildren<Text>().text = staff + "/" + maxStaff;
+        
     }
     public void ClickHouse()
     {
@@ -34,5 +38,13 @@ public class SystemManager : MonoBehaviour
     public void ClickDock()
     {
         selection = 2;
+    }
+    public void ClickFarm()
+    {
+        selection = 3;
+    }
+    public void ClickMarket()
+    {
+        selection = 4;
     }
 }
